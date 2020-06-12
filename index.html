@@ -10,10 +10,27 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body style="background:#000;color:#fff;text-align: center;padding-top:100px;">
-        <img src="imgs/fireball.jpg">
+    <body onload="loadimg(20)" style="background:#000;color:#fff;text-align: center;">
+        <div style="height:500px">
+        <img src="imgs/fireball.jpg" id="img" style="width:10px">
+        </div>
         <br>
         <h1 style="font-size:75px">大火球<br><small style="color:#f6f6f6;font-size:22px">dahuoqiu.com</small></h1>
+
+        <script>
+            var w=852;
+            
+            function loadimg(n){
+                
+                document.getElementById("img").style.width=n+"px";
+
+                if(n<w){
+                    n=n+10
+                    setTimeout("loadimg("+n+")",10);
+                }
+        }
+            
+        </script>
 
     </body>
 </html>
