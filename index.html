@@ -9,26 +9,110 @@ and open the template in the editor.
         <title>大火球</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            canvas{
+
+  position: absolute;
+
+margin: auto;
+
+top: 0;
+
+right: 0;
+
+bottom: 0;
+
+left: 0;
+
+width: 400px;
+
+height: 800px;
+
+border-radius: 4px;
+
+background: #000;
+
+cursor: none;
+}
+
+            
+        </style>
     </head>
-    <body onload="loadimg(20)" style="background:#000;color:#fff;text-align: center;">
-        <div style="height:500px">
-        <img src="imgs/fireball.jpg" id="img" style="width:10px">
-        </div>
-        <br>
-        <h1 style="font-size:75px">大火球<br><small style="color:#f6f6f6;font-size:22px">dahuoqiu.com</small></h1>
+    <body onload="" style="background:#000;color:#fff;text-align: center;">
+        
+        <canvas></canvas>
+     
+    
+        <h1 style="font-size:25px;position: fixed;bottom:0px;left:48%">大火球<br><small style="color:#ccc;font-size:11px">dahuoqiu.com</small></h1>
 
         <script>
-            var w=852;
-            
-            function loadimg(n){
-                
-                document.getElementById("img").style.width=n+"px";
+        
+        "use strict";
+const W = 40;
 
-                if(n<w){
-                    n=n+10
-                    setTimeout("loadimg("+n+")",10);
-                }
+const H = 80;
+
+const S = 10;
+
+const mtx = new Uint16Array((W + 1) * H);
+
+const canvas = document.querySelector("canvas");
+
+const ctx = canvas.getContext("2d", {lowLatency: true, alpha: false});
+
+canvas.width = W * S;
+
+canvas.height = H * S;
+
+let xm = 20;
+
+let ym = 74;
+
+
+
+
+function fire(){
+
+    requestAnimationFrame(fire);
+
+    if(xm > 1 && xm < W - 1 && ym > 1 && ym < H - 1){
+
+        mtx[ym * W + xm] = 0 + 8192 * Math.random();
+
+    }
+
+    for(let i = 1; i < H - 1; i++) {
+
+        for(let j = 1; j < W - 1; j++) {
+
+            const p = i * W + j;
+
+            const ap = p + W - Math.round(Math.random());
+
+            const ncb = mtx[p];
+
+            const nc = Math.round((mtx[ap] + mtx[ap + 1] + mtx[ap - W] + mtx[ap - W + 1]) * 0.485 * Math.random());
+
+            mtx[p] = nc;
+
+            if (nc !== ncb) {
+
+                const z = -ym + i;
+
+                ctx.fillStyle = `rgb(${Math.round(nc * 4)}, ${Math.round(nc * 2)},${Math.round(nc * 0.001 * z * z * z)})`;
+
+                ctx.fillRect(j * S, i * S, S - 1, S - 1);
+
+            }
+
         }
+
+    }
+
+}
+
+fire();
+
             
         </script>
 
