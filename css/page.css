@@ -4,7 +4,8 @@ body{margin:0;padding:0;}
 .bodybox{
     width:70%;margin:0 auto;
 }
-.cityitem{width:320px;height:390px;float:left;margin-left:8px;margin-top:10px}
+.cityitem{width:320px;height:290px;float:left;margin-left:8px;margin-top:10px;border:1px solid #eee;border-radius: 5px;position:relative}
+.cityitem b{position:absolute;left:10px;top:190px;font-size:19px}
 .itemtitle{clear:both;height:50px;width:100%;color:#336699;font-size: 30px;margin-top:20px}
 .itembox{height:390px;}
 
