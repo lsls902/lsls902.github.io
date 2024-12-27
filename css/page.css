@@ -8,7 +8,8 @@ body{margin:0;padding:0;}
 .cityitem b{position:absolute;left:10px;top:190px;font-size:19px}
 .itemtitle{clear:both;height:50px;width:100%;color:#336699;font-size: 30px;margin-top:20px}
 .itembox{height:640px;}
-
+.cityTable{border:1px solid #336699;width:100%}
+.cityTable td{text-align: center;border:1px solid #336699}
 
 
 
